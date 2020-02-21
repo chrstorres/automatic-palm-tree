@@ -100,6 +100,10 @@ public class LinkedListPlus<T> extends A2LList<T> {
     // should be created or destroyed.
     public void leftRotate(int num) {
 
+        if (num < 0 ) {
+            num = numberOfEntries + num;
+        }
+
         if (num > numberOfEntries) {
             num = num % numberOfEntries;
         }
@@ -113,12 +117,15 @@ public class LinkedListPlus<T> extends A2LList<T> {
         }
 
         firstNode = temp;
-
-
     }
 
 
     public void rightRotate(int num) {
+
+        if (num < 0 ) {
+            num = numberOfEntries + num;
+        }
+
 
         if (num > numberOfEntries) {
             num = num % numberOfEntries;
@@ -141,19 +148,18 @@ public class LinkedListPlus<T> extends A2LList<T> {
     // or destroyed.
     public void reverse() {
 
-        Node first = firstNode;
-        Node temp = firstNode.prev;
-
+        Node curr = firstNode.next;
+        Node prev = curr.prev;
+        Node next;
 
         for (int tCount = 1; tCount < numberOfEntries; tCount++) {
+            next = curr.next;
+            curr.next = prev;
 
-            replace(tCount, temp.getData());
-
-            temp = temp.prev;
-
+            prev = curr;
+            curr = next;
         }
 
-        replace(numberOfEntries, first.getData());
-
+        firstNode = prev;
     }
 }

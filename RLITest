@@ -1,0 +1,123 @@
+R1 = 123456789
+R2 = 987654321
+leadZero1 = 0
+leadZero2 = 12300
+
+123456789 + 987654321 = 1111111110
+1 + 999999999999999 = 1000000000000000
+999999999999999 + 1 = 1000000000000000
+
+23456 - 4567 = 18889
+1000000 - 1 = 999999
+2111112 - 1111111 = 1000001
+123456 - 123455 = 1
+123456 - 123456 = 0
+123457 > 123456: Cannot subtract
+
+Copy of 1000000000000000 = 1000000000000000
+
+844444444444444 == 844444444444444
+844444444444444 > 744444444444444
+844444444444444 < 844444445444444
+844444444444444 > 9444
+844444444444444 > 744444444444445
+744444444444444 < 844444444444444
+744444444444444 == 744444444444444
+744444444444444 < 844444445444444
+744444444444444 > 9444
+744444444444444 < 744444444444445
+844444445444444 > 844444444444444
+844444445444444 > 744444444444444
+844444445444444 == 844444445444444
+844444445444444 > 9444
+844444445444444 > 744444444444445
+9444 < 844444444444444
+9444 < 744444444444444
+9444 < 844444445444444
+9444 == 9444
+9444 < 744444444444445
+744444444444445 < 844444444444444
+744444444444445 > 744444444444444
+744444444444445 < 844444445444444
+744444444444445 > 9444
+744444444444445 == 744444444444445
+
+Here is the sorted array:
+9444
+744444444444444
+744444444444445
+844444444444444
+844444445444444
+
+12345678987654321 equals 12345678987654321
+12345678987654321 does not equal 12345678907654321
+
+1234567 * 10^6 = 1234567000000
+1234567000000 / 10^8 = 12345
+12345 / 10^7 = 0
+0 * 10^5 = 0
+
+    ArrayList<Integer> list = new ArrayList<Integer>();
+
+        String[] numbers = sb.toString().split(" ");//if spaces are uneven, use \\s+ instead of " "
+
+        for (String number : numbers) {
+            list.add(Integer.valueOf(number));
+        }
+
+        StringBuilder sbe = new StringBuilder();
+
+        Node tempNew = rightOp.firstNode;
+
+        for (int i = 1; i < rightOp.getLength(); i++) {
+
+            sbe.append(tempNew.getData());
+
+            tempNew = tempNew.prev;
+
+        }
+
+        ArrayList<Integer> listNew = new ArrayList<Integer>();
+
+        String[] numbersNew = sbe.toString().split(" ");
+
+        for (String number : numbersNew) {
+            listNew.add(Integer.valueOf(number));
+        }
+
+        int curr1;
+        int curr2;
+        int currTotal;
+        int totalOps = 0;
+        int remainder = 0;
+
+        ArrayList<Integer> composite = new ArrayList<Integer>();
+
+        if (numberOfEntries > sbe.length()) {
+            totalOps = numberOfEntries;
+        }
+        else {
+            totalOps = sbe.length();
+        }
+
+        for (int i = 0; i < totalOps; i++) {
+            curr1 = list.get(i);
+            curr2 = listNew.get(i);
+
+            currTotal = curr1 + curr2 + remainder;
+
+            if (currTotal > 9 ) {
+                remainder = currTotal - 9;
+            }
+            else {remainder = 0;}
+
+            composite.add(currTotal);
+
+            curr1 = 0;
+            curr2 = 0;
+            currTotal = 0;
+        }
+
+        if (remainder > 0) {
+            composite.add(remainder);
+        }
