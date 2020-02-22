@@ -129,6 +129,8 @@ public class ReallyLongInt 	extends LinkedListPlus<Integer>
     // Return new ReallyLongInt which is difference of current and argument
     public ReallyLongInt subtract(ReallyLongInt rightOp) {
 
+        if (rightOp.getLength()> numberOfEntries && rightOp.firstNode.getData() > firstNode.getData()) { throw new ArithmeticException(); }
+
         Node temp = firstNode.prev;
         Node tempnew = rightOp.firstNode.prev;
 
@@ -240,6 +242,22 @@ public class ReallyLongInt 	extends LinkedListPlus<Integer>
             return false;
         } else {
             if (firstNode.prev.getData().equals(temp.firstNode.prev.getData())) {
+
+                Node tempN = firstNode.prev;
+                Node tempNew = temp.firstNode.prev;
+
+                for (int i = 0; i < numberOfEntries; i++) {
+
+                    if (tempN.getData().equals(tempNew.getData())) {
+
+                        tempN = tempN.prev;
+                        tempNew = tempNew.prev;
+
+                    } else {
+                        return false;
+                    }
+
+                }
                 return true;
             } else {
                 return false;
